@@ -74,14 +74,16 @@ var total = 0;
 // Exercise 1
 function buy(id) {
     const productFind = products.find((product) => product.id === id);
-    cartList.push(productFind)
+    cartList.push(productFind); 
     // 1. Loop for to the array products to get the item to add to cart
     // 2. Add found product to the cartList array
 }
 
 // Exercise 2
 function cleanCart() {
-
+    while (total < cartList.length) {
+        cartList.pop([total]);
+    }
 }
 
 // Exercise 3
