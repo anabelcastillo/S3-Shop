@@ -7,7 +7,7 @@ var products = [
         type: 'grocery',
         offer: {
             number: 3,
-            percent: 20
+            percent: 4.76
         }
     },
     {
@@ -23,7 +23,7 @@ var products = [
         type: 'grocery',
         offer: {
             number: 10,
-            percent: 30
+            percent: 33.333333333
         }
     },
     {
@@ -68,7 +68,7 @@ var cartList = [];
 
 // Improved version of cartList. Cart is an array of products (objects), but each one has a quantity field to define its quantity, so these products are not repeated.
 var cart = [];
-
+let counter = 0
 var total = 0;
 
 // Exercise 1
@@ -77,7 +77,7 @@ function buy(id) {
     cartList.push(productFind);
     calculateTotal()
     console.log(cartList)
-    console.log(total)
+    console.log("total "+total)
     // 1. Loop for to the array products to get the item to add to cart
     // 2. Add found product to the cartList array
 }
@@ -90,8 +90,8 @@ function cleanCart() {
 
 // Exercise 3
 function calculateTotal() {
-    for (let i = 0; i < cartList.length; i++) {
-        total += cartList[i].price;
+    for (counter; counter < cartList.length; counter++) {
+        total += cartList[counter].price;
     }
     // Calculate total price of the cart using the "cartList" array
 }
@@ -113,6 +113,7 @@ function generateCart() {
             cart.push(product);
         }
     }
+    applyPromotionsCart(cart)
     console.log(cart)
   }
     // Using the "cartlist" array that contains all the items in the shopping cart, 
@@ -120,7 +121,25 @@ function generateCart() {
 
 
 // Exercise 5
-function applyPromotionsCart() {
+function applyPromotionsCart(cart) {
+    cart.forEach( function (product) {
+
+        if ( product.offer ) {
+            let subtotal = product.price * product.quantity;
+
+            if ( product.offer.number === 3 && product.quantity >= 3 ) {
+                let discount = ( subtotal * product.offer.percent ) / 100;
+                discount = discount.toFixed(2)
+                product.subtotalWithDiscount = subtotal - discount;
+            }
+
+            if ( product.offer.number === 10 && product.quantity >= 10 ) {
+                let discount = ( subtotal * product.offer.percent ) / 100;
+                discount = discount.toFixed(2)
+                product.subtotalWithDiscount = subtotal - discount;
+            }
+        }
+    })
     // Apply promotions to each item in the array "cart"
 }
 
