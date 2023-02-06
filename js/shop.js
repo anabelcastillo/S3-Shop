@@ -127,13 +127,8 @@ function applyPromotionsCart(cart) {
         if ( product.offer ) {
             let subtotal = product.price * product.quantity;
 
-            if ( product.offer.number === 3 && product.quantity >= 3 ) {
-                let discount = ( subtotal * product.offer.percent ) / 100;
-                discount = discount.toFixed(2)
-                product.subtotalWithDiscount = subtotal - discount;
-            }
-
-            if ( product.offer.number === 10 && product.quantity >= 10 ) {
+            if ( product.offer.number === 3 && product.quantity >= 3 || 
+                product.offer.number === 10 && product.quantity >= 10 ) {
                 let discount = ( subtotal * product.offer.percent ) / 100;
                 discount = discount.toFixed(2)
                 product.subtotalWithDiscount = subtotal - discount;
