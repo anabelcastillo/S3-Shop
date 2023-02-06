@@ -75,9 +75,6 @@ var total = 0;
 function buy(id) {
     const productFind = products.find((product) => product.id === id);
     cartList.push(productFind);
-    calculateTotal()
-    console.log(cartList)
-    console.log("total "+total)
     // 1. Loop for to the array products to get the item to add to cart
     // 2. Add found product to the cartList array
 }
@@ -114,7 +111,6 @@ function generateCart() {
         }
     }
     applyPromotionsCart(cart)
-    console.log(cart)
   }
     // Using the "cartlist" array that contains all the items in the shopping cart, 
     // generate the "cart" array that does not contain repeated items, instead each item of this array "cart" shows the quantity of product.
@@ -140,6 +136,19 @@ function applyPromotionsCart(cart) {
 
 // Exercise 6
 function printCart() {
+    calculateTotal()
+    generateCart()
+
+    let shoppingList = []
+    shoppingList = cart.map ( function (product) {
+        return  `<tr>
+                <th scope="row">${product.name}</th>
+                <td>${product.price}</td>
+                <td>${product.quantity}</td>
+                <td>${product.total}</td>
+                </tr>`;
+    } );
+    document.getElementById("cart_list").innerHTML = shoppingList.join("<br>");
     // Fill the shopping cart modal manipulating the shopping cart dom
 }
 
