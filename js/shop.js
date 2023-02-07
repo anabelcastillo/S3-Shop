@@ -68,13 +68,12 @@ var cartList = [];
 
 // Improved version of cartList. Cart is an array of products (objects), but each one has a quantity field to define its quantity, so these products are not repeated.
 var cart = [];
-let shoppingList = [];
-let counter = 0
+let shoppingList = "";
 var total = 0;
 
 // Exercise 1
 function buy(id) {
-    const productFind = products.find((product) => product.id === id);
+    const productFind = products.find( (product) => product.id === id );
     cartList.push(productFind);
     // 1. Loop for to the array products to get the item to add to cart
     // 2. Add found product to the cartList array
@@ -83,13 +82,14 @@ function buy(id) {
 // Exercise 2
 function cleanCart() {
     cartList = [];
-    cart = []
-    shoppingList = [];
+    cart = [];
+    shoppingList = "";
+    total = 0;
+    document.getElementById("total_price").innerHTML = total;
     document.getElementById("cart_list").innerHTML = 
         `<tr>
             <th scope="row" class="border border-0">Empty</th>
         </tr>`;
-    document.getElementById("total_price").innerHTML = "0";
 }
 
 // Exercise 3
@@ -97,8 +97,10 @@ function calculateTotal() {
     // for (counter; counter < cartList.length; counter++) {
     //     total += cartList[counter].price;
     // }
-
-    for (counter; counter < cart.length; counter++) {
+    let counter = 0;
+    total = 0;
+    generateCart()
+    for ( counter; counter < cart.length; counter++ ) {
         total += cart[counter].subtotalWithDiscount;
     }
     // Calculate total price of the cart using the "cartList" array
@@ -107,21 +109,22 @@ function calculateTotal() {
 // Exercise 4
 function generateCart() {
     cart = [];
-    for (let i = 0; i < cartList.length; i++) {
+
+    for ( let i = 0; i < cartList.length; i++ ) {
         let product = cartList[i];
         let found = false;
-        for (let j = 0; j < cart.length; j++) {
-            if (cart[j] === product) {
+        for ( let j = 0; j < cart.length; j++ ) {
+            if ( cart[j] === product ) {
                 cart[j].quantity++;
                 found = true;
                 break;
             }
         }
-        if (!found) {
+        if ( !found ) {
             product.quantity = 1; 
-            cart.push(product);
+            cart.push( product );
         }
-        applyPromotionsCart()
+        applyPromotionsCart(cart)
     }
 }
     // Using the "cartlist" array that contains all the items in the shopping cart, 
@@ -129,7 +132,7 @@ function generateCart() {
 
 
 // Exercise 5
-function applyPromotionsCart() {
+function applyPromotionsCart(cart) {
     cart.forEach( function (product) {
         const subtotal = product.price * product.quantity;
 
@@ -154,7 +157,7 @@ function applyPromotionsCart() {
 
 // Exercise 6
 function printCart() {
-    generateCart();
+    calculateTotal();
     
     shoppingList = cart.map ( function (product) {
         return  `<tr>
@@ -167,9 +170,8 @@ function printCart() {
 
     document.getElementById("cart_list").innerHTML = shoppingList.join("<br>");
 
-    calculateTotal()
-    const printPriceTotal = ( shoppingList === [] ) ? 
-        document.getElementById("total_price").innerHTML = "0" : 
+    cart.length === 0 ? 
+        document.getElementById("total_price").innerHTML = 0 : 
         document.getElementById("total_price").innerHTML = `${total}€`;
     // Fill the shopping cart modal manipulating the shopping cart dom
 }
