@@ -162,9 +162,9 @@ function printCart() {
     shoppingList = cart.map ( function (product) {
         return  `<tr>
                 <th scope="row">${product.name}</th>
-                <td>${product.price}€</td>
+                <td>$${product.price}</td>
                 <td>${product.quantity}</td>
-                <td>${product.subtotalWithDiscount}€</td>
+                <td>$${product.subtotalWithDiscount}</td>
                 </tr>`;
     } );
 
@@ -172,7 +172,7 @@ function printCart() {
 
     cart.length === 0 ? 
         document.getElementById("total_price").innerHTML = 0 : 
-        document.getElementById("total_price").innerHTML = `${total}€`;
+        document.getElementById("total_price").innerHTML = `${total}`;
     // Fill the shopping cart modal manipulating the shopping cart dom
 }
 
