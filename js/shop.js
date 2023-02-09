@@ -181,9 +181,23 @@ function printCart() {
 
 // Exercise 7
 function addToCart(id) {
-    // Refactor previous code in order to simplify it 
-    // 1. Loop for to the array products to get the item to add to cart
-    // 2. Add found product to the cart array or update its quantity in case it has been added previously.
+    //cart = [];
+    // let productFind = undefined;
+    // productFind = products.find( (product) => product.id === id );
+debugger
+    for ( let i = 0; i < products.length; i++ ) {
+        if ( products[i].id === id ) {
+            const product = products[i];
+            //const productFound = cart.includes(product)
+            product.quantity = 1;
+            cart.push(product);
+            console.log("producto encontrado que NO existe: "+cart[i])
+        }
+        else {
+            cart[i].quantity++
+            console.log("producto encontrado que SI existe: "+cart[i])
+        }
+    }
 }
 
 // Exercise 8
