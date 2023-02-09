@@ -94,12 +94,9 @@ function cleanCart() {
 
 // Exercise 3
 function calculateTotal() {
-    // for (counter; counter < cartList.length; counter++) {
-    //     total += cartList[counter].price;
-    // }
     let counter = 0;
     total = 0;
-    generateCart()
+    addToCart()
     for ( counter; counter < cart.length; counter++ ) {
         total += cart[counter].subtotalWithDiscount;
     }
@@ -173,34 +170,37 @@ function printCart() {
     cart.length === 0 ? 
         document.getElementById("total_price").innerHTML = 0 : 
         document.getElementById("total_price").innerHTML = `${total}`;
-    // Fill the shopping cart modal manipulating the shopping cart dom
 }
+    // Fill the shopping cart modal manipulating the shopping cart dom
 
 
 // ** Nivell II **
 
-// Exercise 7
+// Exercise 8
 function addToCart(id) {
-    //cart = [];
-    // let productFind = undefined;
-    // productFind = products.find( (product) => product.id === id );
-debugger
     for ( let i = 0; i < products.length; i++ ) {
         if ( products[i].id === id ) {
-            const product = products[i];
-            //const productFound = cart.includes(product)
-            product.quantity = 1;
-            cart.push(product);
-            console.log("producto encontrado que NO existe: "+cart[i])
+
+            let product = products[i];
+            let findProduct = cart.includes(product);
+
+            if ( findProduct ) {
+                product.quantity++;
+            }
+            else {
+                product.quantity = 1;
+                cart.push(product);
+            }
         }
-        else {
-            cart[i].quantity++
-            console.log("producto encontrado que SI existe: "+cart[i])
-        }
+        applyPromotionsCart(cart)
     }
+
+    // Refactor previous code in order to simplify it 
+    // 1. Loop for to the array products to get the item to add to cart
+    // 2. Add found product to the cart array or update its quantity in case it has been added previously.
 }
 
-// Exercise 8
+// Exercise 9
 function removeFromCart(id) {
     // 1. Loop for to the array products to get the item to add to cart
     // 2. Add found product to the cartList array
