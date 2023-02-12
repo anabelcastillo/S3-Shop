@@ -64,12 +64,13 @@ var products = [
     }
 ]
 // Array with products (objects) added directly with push(). Products in this array are repeated.
-var cartList = [];
+let cartList = [];
 
 // Improved version of cartList. Cart is an array of products (objects), but each one has a quantity field to define its quantity, so these products are not repeated.
-var cart = [];
+let cart = [];
 let shoppingList = "";
-var total = 0;
+let totalPrice = 0;
+document.getElementById("count_product").innerHTML = 0;
 
 // Exercise 1
 function buy(id) {
@@ -84,21 +85,26 @@ function cleanCart() {
     cartList = [];
     cart = [];
     shoppingList = "";
-    total = 0;
-    document.getElementById("total_price").innerHTML = total;
+    totalPrice = 0;
+    totalQuantity = 0;
+    document.getElementById("total_price").innerHTML = totalPrice;
     document.getElementById("cart_list").innerHTML = 
         `<tr>
             <th scope="row" class="border border-0">Empty</th>
         </tr>`;
+    document.getElementById("count_product").innerHTML = totalQuantity;
+
 }
 
 // Exercise 3
 function calculateTotal() {
     let counter = 0;
-    total = 0;
+    totalPrice = 0;
+
     addToCart()
+    
     for ( counter; counter < cart.length; counter++ ) {
-        total += cart[counter].subtotalWithDiscount;
+        totalPrice += cart[counter].subtotalWithDiscount;
     }
     // Calculate total price of the cart using the "cartList" array
 }
@@ -162,6 +168,9 @@ function printCart() {
                 <td>$${product.price}</td>
                 <td>${product.quantity}</td>
                 <td>$${product.subtotalWithDiscount}</td>
+                <td><a type="button" onclick="removeFromCart(${product.id})">
+                    <i class="fa fa-trash" aria-hidden="true"></i>
+                    </a></td>
                 </tr>`;
     } );
 
@@ -169,7 +178,7 @@ function printCart() {
 
     cart.length === 0 ? 
         document.getElementById("total_price").innerHTML = 0 : 
-        document.getElementById("total_price").innerHTML = `${total}`;
+        document.getElementById("total_price").innerHTML = `${totalPrice}`;
 }
     // Fill the shopping cart modal manipulating the shopping cart dom
 
@@ -194,7 +203,13 @@ function addToCart(id) {
         }
         applyPromotionsCart(cart)
     }
+    
+    let totalQuantity = 0;
 
+    for ( let counter = 0; counter < cart.length; counter++ ) {
+        totalQuantity += cart[counter].quantity;
+        document.getElementById("count_product").innerHTML = totalQuantity;
+    }
     // Refactor previous code in order to simplify it 
     // 1. Loop for to the array products to get the item to add to cart
     // 2. Add found product to the cart array or update its quantity in case it has been added previously.
@@ -202,8 +217,27 @@ function addToCart(id) {
 
 // Exercise 9
 function removeFromCart(id) {
-    // 1. Loop for to the array products to get the item to add to cart
-    // 2. Add found product to the cartList array
+    for ( let i = 0; i < cart.length; i++ ) {
+        //const product = cart[i];
+        //const removeProduct = product.id === id && product.quantity;
+        
+        if ( cart[i].id === id ) {
+            
+            if (cart[i].quantity > 1) {
+                cart[i].quantity--;
+            }
+
+            else {
+                cart.splice(i, 1);
+                i--;
+            }
+        } 
+    }
+
+    printCart();
+
+    cart.length === 0 ? 
+        document.getElementById("count_product").innerHTML = 0 : false;
 }
 
 function open_modal(){
