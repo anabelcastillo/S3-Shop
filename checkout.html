@@ -22,7 +22,7 @@
 	<!-- Navigation-->
 	<nav class="navbar py-3 py-lg-0 navbar-light bg-light navbar-expand-lg" id="navbar-example2">
 		<div class="container d-flex">
-			<a class="navbar-brand" href="#!">ShopNow</a>
+			<a class="navbar-brand" href="index.html">ShopNow</a>
 			<div class="d-flex flex-row order-lg-last align-items-center">
 
 				<button type="button" class="navbar-toggler order-last collapsed" data-bs-toggle="collapse"
@@ -44,13 +44,13 @@
 
 				<ul class="navbar-nav me-auto mb-4 mb-lg-0 ms-lg-5">
 					<li class="nav-item">
-						<a class="nav-link" href="#grocery"><i class="fas fa-shopping-basket"></i> Grocery</a>
+						<a class="nav-link" href="index.html#grocery"><i class="fas fa-shopping-basket"></i> Grocery</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="#beauty"><i class="fas fa-heart"></i> Beauty</a>
+						<a class="nav-link" href="index.html#beauty"><i class="fas fa-heart"></i> Beauty</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="#clothes"><i class="fas fa-tshirt"></i> Clothes</a>
+						<a class="nav-link" href="index.html#clothes"><i class="fas fa-tshirt"></i> Clothes</a>
 					</li>
 
 				</ul>
@@ -77,24 +77,23 @@
 				<h3 class="my-3 bord shadow text-center"><i class="fas fa-stopwatch p-2"></i>Delivery on time</h3>
 			</div>
 		</div>
-		<form class="form needs-validation" novalidate>
+		<form class="form" id="checkoutForm" novalidate>
 			<div class="row bord p-5 shadow m-5">
 				<div class="col-sm-6">
 					<div class="mt-3">
 						<label for="fName" class="form-label">First Name *</label>
-						<input id="fName" class="form-control ml-3" title="Must contain only letters and at least 3 characters" type="text" placeholder="First Name" minlength="3" pattern="[a-zA-Z\s]{3,15}" required/>
+						<input id="fName" class="form-control ml-3" title="Must contain only letters and at least 3 characters" type="text" placeholder="First Name" minlength="3" />
 						<div id="errorName" class="invalid-feedback">This field is required and must be at least 3 characters long and must contain only letters
 						</div>
-						<id id="notify"></id>
 					</div>
 					<div class="mt-3 ">
 						<label for="fEmail" class="form-label">Email *</label>
-						<input id="fEmail" class="form-control ml-3" type="email" placeholder="Email" minlength="3" pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$" required/>
+						<input id="fEmail" class="form-control ml-3" type="email" placeholder="Email" minlength="3" />
 						<div id="errorEmail" class="invalid-feedback">This field is required and must be an email account</div>
 					</div>
 					<div class="mt-3 ">
 						<label for="fAddress" class="form-label">Address *</label>
-						<input id="fAddress" class="form-control" title="Must contain at least 3 characters" type="text" placeholder="Address" minlength="3" required/>
+						<input id="fAddress" class="form-control" title="Must contain at least 3 characters" type="text" placeholder="Address" minlength="3" />
 						<div id="errorAddress" class="invalid-feedback">This field is required and must have, at least, 3 characters
 						</div>
 					</div>
@@ -102,19 +101,18 @@
 				<div class="col-sm-6">
 					<div class="mt-3">
 						<label for="fLastN" class="form-label">Last Name *</label>
-						<input id="fLastN" class="form-control" title="Must contain only letters and at least 3 characters" type="text" placeholder="Last Name" minlength="3" pattern="[a-zA-Z\s]{3,15}" required/>
+						<input id="fLastN" class="form-control" title="Must contain only letters and at least 3 characters" type="text" placeholder="Last Name" minlength="3" />
 						<div id="errorLastN" class="invalid-feedback">This field is required and must be at least 3 characters long and must contain only letters
 						</div>
 					</div>
 					<div class="mt-3">
 						<label for="fPassword" class="form-label">Password *</label>
-						<input id="fPassword" class="form-control" title="Password of 4 to 8 characters and must include numbers and letters" type="password" minlength="4"
-							maxlength="8" placeholder="Password" pattern="[a-zA-Z0-9\s]{4,8}" required/>
+						<input id="fPassword" class="form-control" title="Password of 3 to 8 characters and must include numbers and letters" type="password" minlength="3" maxlength="8" placeholder="Password" />
 						<div id="errorPassword" class="invalid-feedback">Enter a correct password</div>
 					</div>
 					<div class="mt-3">
 						<label for="fPhone" class="form-label">Phone Number *</label>
-						<input id="fPhone" class="form-control" title="Must be 9 digits with no letters" type="tel" maxlength="9" placeholder="Phone No." pattern="[0-9]{9}" required/>
+						<input id="fPhone" class="form-control" title="Must be 9 digits with no letters" type="tel" maxlength="9" placeholder="Phone No." />
 						<div id="errorPhone" class="invalid-feedback">Invalid phone number!! Must be 9 digits with no letters</div>
 					</div>
 				</div>
